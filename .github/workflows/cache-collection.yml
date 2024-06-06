@@ -35,10 +35,24 @@ jobs:
           overwrite: true
         # this is one way to make a new matrix, but is using the old syntax and we def shouldn't use this
       # this is where we can make the number of test jobs configurable, and probably combined with the previous step for more advanced scenarios
-      - name: print matrix data
+      # - name: print matrix data
+      #   id: set-matrix
+      #   run: |
+      #     echo "::set-output name=matrix::{\"include\":[{\"group\":\"1\"},{\"group\":\"2\"}]}" 
+
+      - uses: actions/github-script@v7
         id: set-matrix
-        run: |
-          echo "::set-output name=matrix::{\"include\":[{\"group\":\"1\"},{\"group\":\"2\"}]}" 
+        with:
+          script: |
+            const generatedMatrix = []
+
+            for (let i = 0; i < ${{ inputs.groups }}; i++) {
+              generatedMatrix.push({
+                group: i,
+              })
+            }
+            
+            core.setOutput('outputmatrix', { 'include': generatedMatrix })
           
       # - name: Upload coverage
       #   uses: actions/upload-artifact@v2
