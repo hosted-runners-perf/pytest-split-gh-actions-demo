@@ -48,10 +48,11 @@ jobs:
           script: |
             const generatedMatrix = []
             const GROUPS = process.env
+            console.log(${GROUPS})
 
             for (let i = 0; i < ${GROUPS}; i++) {
               generatedMatrix.push({
-                group: i,
+                group: i
               })
             }
             
