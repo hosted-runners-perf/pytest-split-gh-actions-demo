@@ -1,7 +1,7 @@
 name: Cache Collection
 
 on: 
-  # push:
+  # push: # may need something like this for push events ${{ github.event.inputs.groups || 2 }}
   workflow_dispatch:
     inputs:
       groups:
@@ -12,6 +12,10 @@ on:
 jobs:
   collect:
     runs-on: ubuntu-latest
+
+    outputs:
+      outputmatrix: ${{ steps.set-matrix.outputs.matrix }}
+    
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -29,6 +33,13 @@ jobs:
           name: pytest_buckets
           path: pytest_buckets.txt
           overwrite: true
+        # this is one way to make a new matrix, but is using the old syntax and we def shouldn't use this
+      # this is where we can make the number of test jobs configurable, and probably combined with the previous step for more advanced scenarios
+      - name: print matrix data
+        id: set-matrix
+        run: |
+          echo "::set-output name=matrix::{\"include\":[{\"group\":\"1\"},{\"group\":\"2\"}]}" 
+          
       # - name: Upload coverage
       #   uses: actions/upload-artifact@v2
       #   with:
@@ -39,8 +50,7 @@ jobs:
     needs: collect
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        group: [1,2]
+      matrix: ${{ fromJson(needs.collect.outputs.outputmatrix) }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.9
