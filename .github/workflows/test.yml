@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        group: [1,2,3]
+        group: [1,2]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -21,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r splits-requirement.txt
       - name: Run pytest
-        run: pytest --cov --splits 3 --group ${{ matrix.group }}
+        run: pytest --cov --splits 2 --group ${{ matrix.group }}
       - name: Upload coverage
         uses: actions/upload-artifact@v2
         with:
