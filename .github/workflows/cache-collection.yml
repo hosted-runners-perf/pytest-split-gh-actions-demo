@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  collect:
     runs-on: ubuntu-latest
     # strategy:
     #   matrix:
@@ -36,9 +36,12 @@ jobs:
       #     name: coverage${{ matrix.group }}
       #     path: .coverage
 
-  coverage:
-    needs: test
+  test:
+    needs: collect
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        group: [1,2]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.9
@@ -52,9 +55,33 @@ jobs:
       - name: Download all artifacts
         # Downloads coverage1, coverage2, etc.
         uses: actions/download-artifact@v2
-      - name: Run coverage
+      - name: Run Tests
         run: |
-          coverage combine coverage*/.coverage*
-          coverage report --fail-under=100
-          coverage xml
-      - uses: codecov/codecov-action@v1
+           pytest \
+            $(sed -n "${{ matrix.group }},1p" pytest_buckets.txt) \
+              2>&1 | tee pytest-${{ matrix.group }}.txt
+      # - name: Run coverage
+      #   run: |
+      #     coverage combine coverage*/.coverage*
+      #     coverage report --fail-under=100
+      #     coverage xml
+      # - uses: codecov/codecov-action@v1
+
+
+
+      # this was from home-assistant using the output from pytest
+      
+      #  - name: Upload pytest output
+      #   if: success() || failure() && steps.pytest-full.conclusion == 'failure'
+      #   uses: actions/upload-artifact@v4.3.3
+      #   with:
+      #     name: pytest-${{ github.run_number }}-${{ matrix.python-version }}-${{ matrix.group }}
+      #     path: pytest-*.txt
+      #     overwrite: true
+      # - name: Upload coverage artifact
+      #   if: needs.info.outputs.skip_coverage != 'true'
+      #   uses: actions/upload-artifact@v4.3.3
+      #   with:
+      #     name: coverage-${{ matrix.python-version }}-${{ matrix.group }}
+      #     path: coverage.xml
+      #     overwrite: true
