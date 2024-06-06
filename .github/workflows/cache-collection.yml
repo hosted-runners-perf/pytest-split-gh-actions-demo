@@ -22,6 +22,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
+      - name: Write Inputs
+        run: echo ${{ inputs.groups }}
       - name: Install deps
         run: |
           python -m pip install --upgrade pip
@@ -48,14 +50,17 @@ jobs:
           script: |
             const generatedMatrix = []
             const  GROUPS = process.env.GROUPS
+            console.log("groups")
             console.log( GROUPS )
 
             for (let i = 1; i < GROUPS + 1; i++) {
+              console.log(i)
               generatedMatrix.push({
                 group: i
               })
             }
-            
+
+            console.log(generatedMatrix)
             core.setOutput('outputmatrix', { 'include': generatedMatrix })
           
       # - name: Upload coverage
