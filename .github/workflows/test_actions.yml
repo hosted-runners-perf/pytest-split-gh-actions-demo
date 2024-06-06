@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      outputmatrix: ${{ steps.set-matrix.outputs.outputmatrix }}
+      outputmatrix: ${{ steps.splittests.outputs.outputmatrix }}
     
     steps:
-      - id: split tests
-        uses: hosted-runners-perf/action-python-test-split@0.0.1
+      - id: splittests
+        uses: hosted-runners-perf/action-python-test-split@0.0.2
         with:
           groups: ${{ inputs.groups }}
 
