@@ -31,6 +31,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: runtests
-        uses: hosted-runners-perf/action-python-test-runner@v0.0.1
+        uses: hosted-runners-perf/action-python-test-runner@v0.0.2
         with:
           group: ${{ matrix.group }}
