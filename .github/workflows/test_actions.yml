@@ -18,7 +18,7 @@ jobs:
     
     steps:
       - id: splittests
-        uses: hosted-runners-perf/action-python-test-split@v0.0.1
+        uses: hosted-runners-perf/action-python-test-split@v0.0.2
         with:
           groups: ${{ inputs.groups }}
 
