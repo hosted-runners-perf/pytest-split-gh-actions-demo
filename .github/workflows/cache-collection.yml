@@ -50,7 +50,7 @@ jobs:
             const  GROUPS = process.env.GROUPS
             console.log( GROUPS )
 
-            for (let i = 0; i < GROUPS; i++) {
+            for (let i = 1; i < GROUPS + 1; i++) {
               generatedMatrix.push({
                 group: i
               })
