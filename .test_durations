@@ -1,42 +1,12 @@
-[
-  [
-    "tests/test_my_project.py::test_1",
-    10.001948377609253
-  ],
-  [
-    "tests/test_my_project.py::test_2",
-    10.001492044448853
-  ],
-  [
-    "tests/test_my_project.py::test_3",
-    10.002390644073486
-  ],
-  [
-    "tests/test_my_project.py::test_4",
-    10.003853797912598
-  ],
-  [
-    "tests/test_my_project.py::test_5",
-    10.003911018371582
-  ],
-  [
-    "tests/test_my_project.py::test_6",
-    10.001911018371582
-  ],
-  [
-    "tests/test_my_project.py::test_7",
-    60.01781081008911
-  ],
-  [
-    "tests/test_my_project.py::test_8",
-    60.018584716796875
-  ],
-  [
-    "tests/test_my_project.py::test_9",
-    60.01936911392212
-  ],
-  [
-    "tests/test_my_project.py::test_10",
-    60.02344634056091
-  ]
-]
+{
+    "tests/test_my_project.py::test_1": 10.011212435994821,
+    "tests/test_my_project.py::test_10": 60.06222827300371,
+    "tests/test_my_project.py::test_2": 10.011806850998255,
+    "tests/test_my_project.py::test_3": 10.01228733699827,
+    "tests/test_my_project.py::test_4": 10.012071805002051,
+    "tests/test_my_project.py::test_5": 10.012197235999338,
+    "tests/test_my_project.py::test_6": 10.011282991996268,
+    "tests/test_my_project.py::test_7": 60.06275638299849,
+    "tests/test_my_project.py::test_8": 60.01598686300713,
+    "tests/test_my_project.py::test_9": 60.061007025993604
+}
