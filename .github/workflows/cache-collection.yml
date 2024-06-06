@@ -20,7 +20,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          python -m script.split_tests 2 tests
+          python -m ./script/split_tests 2 tests
       - name: Upload pytest_buckets
         uses: actions/upload-artifact@v4.3.3
         with:
