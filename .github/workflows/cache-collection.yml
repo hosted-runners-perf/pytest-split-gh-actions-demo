@@ -52,7 +52,7 @@ jobs:
             const  GROUPS = process.env.GROUPS
             console.log("groups")
             console.log( GROUPS )
-            let MaxGroups = GROUPS + 1
+            let MaxGroups = Number(GROUPS) + 1
             console.log(MaxGroups)
 
             for (let i = 1; i < MaxGroups; i++) {
