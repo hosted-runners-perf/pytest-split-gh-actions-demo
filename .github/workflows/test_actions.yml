@@ -17,6 +17,7 @@ jobs:
       outputmatrix: ${{ steps.splittests.outputs.outputmatrix }}
     
     steps:
+      - uses: actions/checkout@v2
       - id: splittests
         uses: hosted-runners-perf/action-python-test-split@v0.0.2
         with:
